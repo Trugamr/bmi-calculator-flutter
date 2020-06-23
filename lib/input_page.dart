@@ -4,14 +4,12 @@ import 'custom_card.dart';
 import 'icon_content.dart';
 
 const Color lightPrimary = Color(0xfff1d1e33);
+const Color darkPrimary = Color(0xff111328);
 const Color accentColor = Color(0xffeb1555);
 
-class InputPage extends StatefulWidget {
-  @override
-  _InputPageState createState() => _InputPageState();
-}
+enum Gender { MALE, FEMALE }
 
-class _InputPageState extends State<InputPage> {
+class InputPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +45,14 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class Cards extends StatelessWidget {
+class Cards extends StatefulWidget {
+  @override
+  _CardsState createState() => _CardsState();
+}
+
+class _CardsState extends State<Cards> {
+  Gender selectedGender = Gender.MALE;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,22 +64,32 @@ class Cards extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 // Male
-                child: CustomCard(
-                  color: lightPrimary,
-                  child: IconContent(
-                    icon: FontAwesomeIcons.mars,
-                    text: 'MALE',
+                child: GestureDetector(
+                  onTap: () => setState(() => selectedGender = Gender.MALE),
+                  child: CustomCard(
+                    color: selectedGender == Gender.MALE
+                        ? lightPrimary
+                        : darkPrimary,
+                    child: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      text: 'MALE',
+                    ),
                   ),
                 ),
               ),
               Expanded(
                 // Female
-                child: CustomCard(
-                    color: lightPrimary,
-                    child: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      text: 'FEMALE',
-                    )),
+                child: GestureDetector(
+                  onTap: () => setState(() => selectedGender = Gender.FEMALE),
+                  child: CustomCard(
+                      color: selectedGender == Gender.FEMALE
+                          ? lightPrimary
+                          : darkPrimary,
+                      child: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        text: 'FEMALE',
+                      )),
+                ),
               ),
             ],
           ),
