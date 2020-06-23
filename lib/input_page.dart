@@ -125,14 +125,25 @@ class _CardsState extends State<Cards> {
                     )
                   ],
                 ),
-                Slider(
-                  onChanged: (double val) =>
-                      setState(() => height = val.toInt()),
-                  value: height.toDouble(),
-                  min: 120.0,
-                  activeColor: Color(0xffeb1555),
-                  inactiveColor: Color(0xff8d8e98),
-                  max: 220.0,
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                    overlayShape: RoundSliderOverlayShape(overlayRadius: 25.0),
+                    activeTrackColor: Colors.white,
+                    inactiveTrackColor: Color(0xff8d8e98),
+                    thumbColor: Color(0xffeb1555),
+                    overlayColor: Color(0x29eb1555),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 14.0),
+                    child: Slider(
+                      onChanged: (double val) =>
+                          setState(() => height = val.toInt()),
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                    ),
+                  ),
                 )
               ],
             ),
