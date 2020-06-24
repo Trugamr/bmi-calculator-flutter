@@ -4,6 +4,14 @@ import '../components/bottom_button.dart';
 import '../constants.dart';
 
 class ResultPage extends StatelessWidget {
+  ResultPage({
+    @required this.bmiResult,
+    @required this.resultText,
+    @required this.interpretation,
+  });
+
+  final String bmiResult, resultText, interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +38,7 @@ class ResultPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'OVERWEIGHT',
+                      resultText,
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 18.0,
@@ -38,13 +46,13 @@ class ResultPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '28.4',
+                      bmiResult,
                       style: kNumberTextStyle.copyWith(fontSize: 80.0),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        'You have a higher than normal body weight. Try to exercise more.',
+                        interpretation,
                         style: kLabelTextStyle.copyWith(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -58,11 +66,9 @@ class ResultPage extends StatelessWidget {
             margin: EdgeInsets.only(top: 10.0),
             height: 66.0,
             width: double.infinity,
-            child: Expanded(
-              child: BottomButton(
-                text: 'RE-CALCULATE',
-                onPressed: () => Navigator.pop(context),
-              ),
+            child: BottomButton(
+              text: 'RE-CALCULATE',
+              onPressed: () => Navigator.pop(context),
             ),
           ),
         ],
