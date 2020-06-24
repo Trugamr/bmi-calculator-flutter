@@ -28,7 +28,9 @@ class InputPage extends StatelessWidget {
             width: double.infinity,
             child: Expanded(
               child: RaisedButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.pushNamed(context, '/result'),
+                },
                 color: kAccentColor,
                 child: Text(
                   'CALCULATE',
