@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'custom_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
-import 'counter_card.dart';
+import '../components/custom_card.dart';
+import '../components/icon_content.dart';
+import '../components/counter_card.dart';
+import '../components/bottom_button.dart';
+import '../constants.dart';
 
 enum Gender { MALE, FEMALE }
 
@@ -27,15 +28,11 @@ class InputPage extends StatelessWidget {
             height: 66.0,
             width: double.infinity,
             child: Expanded(
-              child: RaisedButton(
+              child: BottomButton(
+                text: 'CALCULATE',
                 onPressed: () => {
                   Navigator.pushNamed(context, '/result'),
                 },
-                color: kAccentColor,
-                child: Text(
-                  'CALCULATE',
-                  style: TextStyle(fontSize: 18.0, letterSpacing: 1.4),
-                ),
               ),
             ),
           )
