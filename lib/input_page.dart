@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'custom_card.dart';
 import 'icon_content.dart';
-import 'constatnts.dart';
+import 'constants.dart';
 
 enum Gender { MALE, FEMALE }
 
