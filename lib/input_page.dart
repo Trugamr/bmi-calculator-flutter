@@ -50,6 +50,7 @@ class Cards extends StatefulWidget {
 class _CardsState extends State<Cards> {
   Gender selectedGender = Gender.MALE;
   int height = 160;
+  int weight = 72;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +72,7 @@ class _CardsState extends State<Cards> {
                     child: IconContent(
                       icon: FontAwesomeIcons.mars,
                       text: 'MALE',
+                      enabled: selectedGender == Gender.MALE,
                     ),
                   ),
                 ),
@@ -86,6 +88,7 @@ class _CardsState extends State<Cards> {
                     child: IconContent(
                       icon: FontAwesomeIcons.venus,
                       text: 'FEMALE',
+                      enabled: selectedGender == Gender.FEMALE,
                     ),
                   ),
                 ),
@@ -152,9 +155,42 @@ class _CardsState extends State<Cards> {
         Expanded(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
                 child: CustomCard(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'WEIGHT',
+                        style: kLabelTextStyle,
+                      ),
+                      // Number row
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          // push text towards right a little, make it centered
+                          SizedBox(
+                            width: 22.0,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          SizedBox(
+                            width: 2.0,
+                          ),
+                          Text(
+                            'kg',
+                            style: kLabelTextStyle,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                   color: kLightPrimary,
                 ),
               ),
