@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'custom_card.dart';
 import 'icon_content.dart';
 import 'constants.dart';
+import 'counter_card.dart';
 
 enum Gender { MALE, FEMALE }
 
@@ -51,6 +52,19 @@ class _CardsState extends State<Cards> {
   Gender selectedGender = Gender.MALE;
   int height = 160;
   int weight = 72;
+  int age = 18;
+
+  void updateWeight(int weight) {
+    setState(() {
+      this.weight = weight;
+    });
+  }
+
+  void updateAge(int age) {
+    setState(() {
+      this.age = age;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,43 +173,25 @@ class _CardsState extends State<Cards> {
             children: <Widget>[
               Expanded(
                 child: CustomCard(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'WEIGHT',
-                        style: kLabelTextStyle,
-                      ),
-                      // Number row
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: <Widget>[
-                          // push text towards right a little, make it centered
-                          SizedBox(
-                            width: 22.0,
-                          ),
-                          Text(
-                            weight.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          SizedBox(
-                            width: 2.0,
-                          ),
-                          Text(
-                            'kg',
-                            style: kLabelTextStyle,
-                          ),
-                        ],
-                      )
-                    ],
+                  child: CounterCard(
+                    title: 'WEIGHT',
+                    subtitle: 'kg',
+                    val: weight,
+                    onAdd: () => updateWeight(weight + 1),
+                    onSubtract: () => updateWeight(weight - 1),
                   ),
                   color: kLightPrimary,
                 ),
               ),
               Expanded(
                 child: CustomCard(
+                  child: CounterCard(
+                    title: 'AGE',
+                    subtitle: 'yrs',
+                    val: age,
+                    onAdd: () => updateAge(age + 1),
+                    onSubtract: () => updateAge(age - 1),
+                  ),
                   color: kLightPrimary,
                 ),
               ),
